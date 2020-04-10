@@ -1,5 +1,10 @@
 # vue-ts
 
+## 项目介绍
+Vue + TypeScript 项目实践，主要包括以下内容：
+- [在 Vue+TypeScript 项目中，如何配置 ESLint 和 Prettier](https://www.cnblogs.com/dora-zc/p/12674301.html)
+- [如何在Vue项目中使用TypeScript](https://www.cnblogs.com/dora-zc/)
+
 ## Project setup
 ```
 npm install
