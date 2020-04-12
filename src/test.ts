@@ -81,3 +81,44 @@ function getData<T>(): Result<T> {
   ]
   return { ok: 0, data }
 }
+
+// 装饰器
+function log(target: any) {
+  target.prototype.log = function() {
+    console.log('this is a log: ' + this.bar)
+  }
+}
+
+// 方法装饰器
+function withLog(target: any, name: string, descriptor: any) {
+  const fn = descriptor.value
+  descriptor.value = function(val: string) {
+    console.log('this is wothLog...')
+    fn.call(this, val)
+  }
+  return descriptor
+}
+
+// 属性装饰器
+function mua(param: string) {
+  return function(target: any, name: string) {
+    target[name] = param + name
+  }
+}
+
+@log
+class Foo {
+  bar = 'bar'
+  log() {}
+  @mua('mua~~') ns!: string
+  @withLog
+  setBar(val: string) {
+    this.bar = val
+  }
+}
+
+const foo = new Foo()
+foo.log()
+console.log(foo.ns)
+foo.setBar('set new bar')
+console.log(foo.bar)
